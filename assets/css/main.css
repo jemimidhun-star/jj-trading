@@ -4186,3 +4186,10 @@ input, select, textarea {
     border-radius: 25% 1%;
     margin: 10px;
 	}
+@media screen and (max-width: 736px){
+		#six, #footer .address, #footer .phone {
+			text-align: center;
+		}
+	#logo img{
+		display:none;
+	}
