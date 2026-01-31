@@ -4402,7 +4402,15 @@ input, select, textarea {
   .gallery-wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+
 }
+@media (max-width: 768px){
+.top-head{
+	display: none !important;
+}
+}
+
 
 /* Small mobile – 1 per row */
 @media (max-width: 400px) {
@@ -4431,3 +4439,31 @@ input, select, textarea {
 .carousel-track-2 .item span{
 	color: #000;
 } */
+footer .icon.alt:before{
+	color: #e44c65 !important;
+	text-shadow: none;
+	margin-right: 10px;
+}
+.top-head{
+	background-color: #e44c65;
+	color: #ffffff;
+	text-align: right;
+	display: flex;
+	gap: 20px;
+	padding: 10px 20px;
+	justify-content: right;
+}
+.top-head a{
+	color: #ffffff;
+	font-weight: 500;
+	border-bottom:none;
+}
+.top-head a:hover{
+	color: #000 !important;
+	border-bottom:none;
+}
+.top-head .icon.alt:before{
+	color: #fff !important;
+	text-shadow: none;
+	margin-right: 10px;
+}
