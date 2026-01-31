@@ -248,3 +248,102 @@
 			._parallax();
 
 })(jQuery);
+
+const track = document.querySelector('.carousel-track');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let items = Array.from(document.querySelectorAll('.item'));
+
+let index = 0;
+let startX = 0;
+let currentTranslate = 0;
+let isDragging = false;
+
+function itemsPerView() {
+  if (window.innerWidth <= 480) return 1;
+  if (window.innerWidth <= 768) return 2;
+  if (window.innerWidth <= 1024) return 3;
+  return 4;
+}
+
+/* ---------- INFINITE CLONE SETUP ---------- */
+function setupInfinite() {
+  const perView = itemsPerView();
+  const cloneStart = items.slice(0, perView).map(el => el.cloneNode(true));
+  const cloneEnd = items.slice(-perView).map(el => el.cloneNode(true));
+
+  cloneStart.forEach(clone => track.appendChild(clone));
+  cloneEnd.forEach(clone => track.insertBefore(clone, track.firstChild));
+
+  items = Array.from(document.querySelectorAll('.item'));
+  index = perView;
+
+  updatePosition(false);
+}
+
+function updatePosition(animate = true) {
+  const itemWidth = items[0].getBoundingClientRect().width;
+  track.style.transition = animate ? 'transform 0.6s ease' : 'none';
+  track.style.transform = `translateX(-${index * itemWidth}px)`;
+}
+
+/* ---------- BUTTON NAV ---------- */
+nextBtn.onclick = () => {
+  index++;
+  updatePosition();
+
+  checkInfinite();
+};
+
+prevBtn.onclick = () => {
+  index--;
+  updatePosition();
+
+  checkInfinite();
+};
+
+function checkInfinite() {
+  const perView = itemsPerView();
+  const totalItems = items.length;
+
+  setTimeout(() => {
+    if (index >= totalItems - perView) {
+      index = perView;
+      updatePosition(false);
+    }
+
+    if (index <= 0) {
+      index = totalItems - perView * 2;
+      updatePosition(false);
+    }
+  }, 600);
+}
+
+/* ---------- TOUCH / SWIPE ---------- */
+track.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+track.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const diff = startX - e.touches[0].clientX;
+  track.style.transform = `translateX(-${index * items[0].offsetWidth + diff}px)`;
+});
+
+track.addEventListener('touchend', e => {
+  isDragging = false;
+  const diff = startX - e.changedTouches[0].clientX;
+
+  if (diff > 50) nextBtn.click();
+  else if (diff < -50) prevBtn.click();
+  else updatePosition();
+});
+
+/* ---------- INIT ---------- */
+setupInfinite();
+window.addEventListener('resize', () => {
+  track.innerHTML = '';
+  items.forEach(item => track.appendChild(item));
+  setupInfinite();
+});
