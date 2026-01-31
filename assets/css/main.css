@@ -4131,9 +4131,9 @@ input, select, textarea {
 		color: #e44c65 !important;
 		margin-right: 10px;
 	}
-	#two, #three {
+	/* #mission, #vision {
 		  height: 80vh;  
-	}
+	} */
 	#six{
 		text-align: left;
 	}
@@ -4179,9 +4179,6 @@ input, select, textarea {
 		#six, #footer .address, #footer .phone {
 			text-align: center;
 		}
-		#two, #three {
-		  height: 50vh;  
-	}
 	}
 
 	#logo img{
