@@ -4179,6 +4179,9 @@ input, select, textarea {
 		#six, #footer .address, #footer .phone {
 			text-align: center;
 		}
+		#two, #three {
+		  height: 50vh;  
+	}
 	}
 
 	#logo img{
