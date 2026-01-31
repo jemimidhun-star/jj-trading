@@ -4376,3 +4376,58 @@ input, select, textarea {
   padding-left: 20px;
 }
 
+.gallery-title {
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: 1px;
+}
+
+/* Grid */
+.gallery-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+}
+
+/* Tablet – 3 per row */
+@media (max-width: 1024px) {
+  .gallery-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile – 2 per row */
+@media (max-width: 600px) {
+  .gallery-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small mobile – 1 per row */
+@media (max-width: 400px) {
+  .gallery-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+.gallery-card {
+	width: 250px;;
+}
+
+.carousel-track-2{
+	 display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 28px;
+}
+.carousel-track-2 .item img{
+
+	object-fit: fill;
+    box-shadow: none;
+}
+/* .carousel-track-2 .item{
+	background-color: #fff;
+	padding: 0;
+}
+.carousel-track-2 .item span{
+	color: #000;
+} */
